@@ -24,6 +24,7 @@
 #include "utility/interrupt_pins.h"
 #include "utility/direct_pin_read.h"
 
+class DataProvider;
 class DataConsumer {
 	friend class DataProvider;
 protected:
