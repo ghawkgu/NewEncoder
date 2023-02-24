@@ -321,7 +321,7 @@ bool NewEncoder::newSettings(int16_t newMin, int16_t newMax, int16_t newCurrent)
 	return success;
 }
 
-void ESP_ISR NewEncoder::pinChangeHandler(uint8_t index) {
+void NewEncoder::pinChangeHandler(uint8_t index) {
 	uint8_t newStateVariable;
 
 	newStateVariable = NewEncoder::tablePtr[currentStateVariable][index];
@@ -341,7 +341,7 @@ void ESP_ISR NewEncoder::pinChangeHandler(uint8_t index) {
 	}
 }
 
-void ESP_ISR NewEncoder::updateValue(uint8_t updatedStateVariable) {
+void NewEncoder::updateValue(uint8_t updatedStateVariable) {
 	if ((updatedStateVariable & DELTA_MASK) == INCREMENT_DELTA) {
 		liveState.currentClick = UpClick;
 		if (liveState.currentValue < _maxValue) {
