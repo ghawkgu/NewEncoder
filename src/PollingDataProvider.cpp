@@ -4,9 +4,9 @@
 
 #include "PollingDataProvider.h"
 
-#define POLLING_PIN_TO_BASEREG(pin)             ((this->_input_buffer) + ((pin) / 8))
-#define POLLING_PIN_TO_BITMASK(pin)             (1 << ((pin) % 8))
-#define POLLING_DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
+#define POLLING_PIN_TO_BASEREG(pin)             (volatile IO_REG_TYPE *)((this->_input_buffer) + ((pin) / 8))
+#define POLLING_PIN_TO_BITMASK(pin)             (volatile IO_REG_TYPE)(1 << ((pin) % 8))
+#define POLLING_DIRECT_PIN_READ(base, mask)     (((*(uint8_t *)(base)) & (uint8_t)(mask)) ? 1 : 0)
 
 PollingDataProvider::PollingDataProvider(uint8_t aPin, uint8_t bPin, DataConsumer *target, uint8_t *input_buffer)
     : PollingDataProvider(input_buffer) {
